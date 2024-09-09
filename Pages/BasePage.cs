@@ -1,0 +1,39 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Support.UI;
+using System;
+
+namespace Autotest
+{
+    public abstract class BasePage<TDriver> where TDriver : AppiumDriver
+    {
+        protected TDriver driver;
+        protected WebDriverWait wait;
+
+        public BasePage(TDriver driver)
+        {
+            this.driver = driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+        }
+
+        protected IWebElement WaitForElement(By locator)
+        {
+            return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
+        }
+
+        protected void ClickElement(By locator)
+        {
+            WaitForElement(locator).Click();
+        }
+
+        protected void EnterText(By locator, string text)
+        {
+            var element = WaitForElement(locator);
+            element.Clear();
+            element.SendKeys(text);
+        }
+
+        public abstract bool IsPageLoaded();
+    }
+}
+
