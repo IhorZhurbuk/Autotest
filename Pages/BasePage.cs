@@ -5,7 +5,7 @@ using System;
 
 namespace Autotest
 {
-    public abstract class BasePage<TDriver> where TDriver : AppiumDriver
+    public  class BasePage
     {
         protected TDriver driver;
         protected WebDriverWait wait;
