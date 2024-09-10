@@ -1,5 +1,6 @@
 ﻿using Autotest.Pages;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 
 namespace Autotest.Tests
@@ -7,33 +8,21 @@ namespace Autotest.Tests
     [TestFixture]
     public class LoginTest : BaseTest
     {
-        private BaseLoginPage<AppiumDriver> loginPage;
-
-        [SetUp]
-        public new void SetUp()
-        {
-            base.SetUp();
-        }
-
-        [Test]
+        [Test]     
         public void Test_ClickFileButton()
         {
-            loginPage.ClickFileButton();
-            Assert.Pass("File button clicked successfully.");
-        }
-
-        [Test]
-        public void Test_ClickCloudKeyButton()
-        {
+            loginPage.ClickPumbButton();
             loginPage.ClickCloudKeyButton();
-            Assert.Pass("Cloud key button clicked successfully.");
+            loginPage.ClickFileButton();                   
+            loginPage.ClickFilePathKeyButton();
+            loginPage.ClickDocumentButton();
+            loginPage.ClickKeysButton();
+            loginPage.ClickFolderButton();
+            loginPage.ClickAllowPermissionButton();
+            loginPage.ClickPasswordFeildButton();
+            loginPage.ClickEnterButton();
         }
-
-        [Test]
-        public void Test_GetFilePathText()
-        {
-            string filePathText = loginPage.GetFilePathText();
-        }
+    
     }
 }
 

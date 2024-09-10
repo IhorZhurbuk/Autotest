@@ -1,15 +1,14 @@
-﻿using Autotest.Pages;
+﻿using Autotest.Drivers;
+using Autotest.IOSPages;
+using Autotest.Pages;
 using Autotest.Utils;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Appium.Service;
-using OpenQA.Selenium.Appium.Service.Options;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,37 +18,25 @@ namespace Autotest.Tests
 {
     public class BaseTest
     {
-        AppiumLocalService appiumLocalService;
-        PlatformCapabilities platformCapabilities = new PlatformCapabilities();
-        AppiumOptions appiumOptions = new AppiumOptions();
-        AppiumServiceBuilder appiumServiceBuilder = new AppiumServiceBuilder();
 
-        ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-        private readonly string url = Startup.ReadFromAppSettings("AppUrl");
-        private AppiumDriver driver;
         private Process appiumProcess;
-        private enum PlatformType
-        {
-            Android,
-            iOS,
-        }
 
-        private AppiumDriver InitializeDriver(PlatformType platformType)
-        {
-            Uri uri = new Uri(url);  
+        private AppiumDriver driver;
+        public BaseLoginPage loginPage;
 
-            switch (platformType)
+        private AppiumDriver InitializeDriver(MobilePlatform platform)
+        {
+            LocalMobileDriverFactory localMobileDriver = new LocalMobileDriverFactory(platform);
+            driver = localMobileDriver.GetDriver();
+
+            // Ініціалізуємо сторінку в залежності від платформи
+            if (platform == MobilePlatform.Android)
             {
-                case PlatformType.Android:
-                    appiumOptions = platformCapabilities.InitNativeAndroidCapabilities();
-                    driver = new AndroidDriver(uri, appiumOptions);
-                    break;
-                case PlatformType.iOS:
-                    appiumOptions = platformCapabilities.InitNativeIOSCapabilities();
-                    driver = new IOSDriver(uri, appiumOptions);
-                    break;
-                default:
-                    throw new Exception("No platform selected!");
+                loginPage = new LoginAndroidPage(driver);
+            }
+            else if (platform == MobilePlatform.IOS)
+            {
+                loginPage = new LoginIOSPage(driver);
             }
             return driver;
         }
@@ -99,7 +86,7 @@ namespace Autotest.Tests
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception ("Error closing Appium server: " + ex.Message);
+                    throw new Exception("Error closing Appium server: " + ex.Message);
                 }
             }
 
@@ -109,13 +96,13 @@ namespace Autotest.Tests
 
         private void SetUpDriver()
         {
-            if (Enum.TryParse(Startup.ReadFromAppSettings("PlatformType"), out PlatformType platformType))
+            if (Enum.TryParse(Startup.ReadFromAppSettings("PlatformType"), out MobilePlatform platform))
             {
-                driver = InitializeDriver(platformType);
+                driver = InitializeDriver(platform);
             }
             else
             {
-                throw new Exception("Invalid platform type in configuration");
+                throw new Exception("Не вказоно платформу виконання");
             }
         }
 
@@ -124,7 +111,7 @@ namespace Autotest.Tests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            StartAppiumServer();
+            // StartAppiumServer();
         }
 
         [OneTimeTearDown]

@@ -7,10 +7,10 @@ namespace Autotest
 {
     public  class BasePage
     {
-        protected TDriver driver;
+        protected AppiumDriver driver;
         protected WebDriverWait wait;
 
-        public BasePage(TDriver driver)
+        public BasePage(AppiumDriver driver)
         {
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
@@ -32,8 +32,5 @@ namespace Autotest
             element.Clear();
             element.SendKeys(text);
         }
-
-        public abstract bool IsPageLoaded();
     }
 }
-
