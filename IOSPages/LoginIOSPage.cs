@@ -32,5 +32,7 @@ namespace Autotest.IOSPages
         protected override By PasswordFeildLocator => throw new System.NotImplementedException();
 
         protected override By EnterLocator => throw new System.NotImplementedException();
+
+        protected override By LogoLocaLocator => throw new System.NotImplementedException();
     }
 }

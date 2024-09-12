@@ -27,6 +27,8 @@ namespace Autotest.Pages
         protected override By PasswordFeildLocator => By.XPath("//android.widget.EditText[@text=\"Введіть пароль\"]");
 
         protected override By EnterLocator => By.XPath("//android.widget.Button[@text=\"УВІЙТИ\"]");
+
+        protected override By LogoLocaLocator => By.XPath("//androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.View");
     }
 }
 

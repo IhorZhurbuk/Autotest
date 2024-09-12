@@ -28,6 +28,7 @@ namespace Autotest.Pages
 
         protected abstract By PasswordFeildLocator { get; }
         protected abstract By EnterLocator { get; }
+        protected abstract By LogoLocaLocator { get; }
 
         public void ClickFileButton()
         {
@@ -70,7 +71,7 @@ namespace Autotest.Pages
         public void ClickEnterButton()
         {
             ClickElement(EnterLocator);
-            Thread.Sleep(10000);
+            WaitForElement(LogoLocaLocator);
         }
     }
 }
