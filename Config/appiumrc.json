@@ -1,7 +1,7 @@
 {
   "server": {
     "address": "127.0.0.1",
-    "port": 8888,
+    "port": 4273,
     "driver": {
       "name": "UiAutomator2"
     },

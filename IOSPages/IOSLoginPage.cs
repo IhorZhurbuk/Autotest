@@ -5,9 +5,9 @@ using OpenQA.Selenium.Appium.iOS;
 
 namespace Autotest.IOSPages
 {
-    public class LoginIOSPage : BaseLoginPage
+    public class IOSLoginPage : BaseLoginPage
     {
-        public LoginIOSPage(AppiumDriver driver) : base(driver)
+        public IOSLoginPage(AppiumDriver driver) : base(driver)
         {
         }
 
@@ -19,20 +19,15 @@ namespace Autotest.IOSPages
 
         protected override By FilePathLocator => throw new System.NotImplementedException();
 
-        protected override By DocumentsLocator => throw new System.NotImplementedException();
-
-        protected override By KeysLocator => throw new System.NotImplementedException();
-
-        protected override By ChooseFolderLocator => throw new System.NotImplementedException();
-
-        protected override By AllowPermissionLocator => throw new System.NotImplementedException();
-
-        protected override By DenyPermissionLocator => throw new System.NotImplementedException();
-
         protected override By PasswordFeildLocator => throw new System.NotImplementedException();
 
         protected override By EnterLocator => throw new System.NotImplementedException();
 
         protected override By LogoLocaLocator => throw new System.NotImplementedException();
+
+        public override BaseStoragePage ClickFilePathKeyButton()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

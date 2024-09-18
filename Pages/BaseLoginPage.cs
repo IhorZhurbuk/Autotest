@@ -1,6 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using Autotest.AndroidPages;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.iOS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +21,7 @@ namespace Autotest.Pages
         protected abstract By FileButtonLocator { get; }
         protected abstract By CloudKeyButtonLocator { get; }
         protected abstract By PumbButtonLocator { get; }
-        protected abstract By FilePathLocator { get; }
-        protected abstract By DocumentsLocator { get; }
-        protected abstract By KeysLocator { get; }
-        protected abstract By ChooseFolderLocator { get; }
-        protected abstract By AllowPermissionLocator { get; }
-        protected abstract By DenyPermissionLocator { get; }
+        protected abstract By FilePathLocator { get; }     
 
         protected abstract By PasswordFeildLocator { get; }
         protected abstract By EnterLocator { get; }
@@ -43,27 +40,9 @@ namespace Autotest.Pages
         {
             ClickElement(PumbButtonLocator);
         }
-        public void ClickFilePathKeyButton()
-        {
-            ClickElement(FilePathLocator);
-        }
-        public void ClickDocumentButton()
-        {
-            ClickElement(DocumentsLocator);
-        }
-        public void ClickKeysButton()
-        {
-            ClickElement(KeysLocator);
-        }
-        public void ClickFolderButton()
-        {
-            ClickElement(ChooseFolderLocator);
-        }
-        public void ClickAllowPermissionButton()
-        {
-            ClickElement(AllowPermissionLocator);
-            Thread.Sleep(2000);
-        }
+        public abstract BaseStoragePage ClickFilePathKeyButton();
+
+
         public void ClickPasswordFeildButton()
         {
             EnterText(PasswordFeildLocator, "777");

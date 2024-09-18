@@ -9,16 +9,12 @@ namespace Autotest.Tests
     public class LoginTest : BaseTest
     {
         [Test]     
-        public void Test_ClickFileButton()
-        {
+        public void Login()
+        {           
             loginPage.ClickPumbButton();
             loginPage.ClickCloudKeyButton();
             loginPage.ClickFileButton();                   
-            loginPage.ClickFilePathKeyButton();
-            loginPage.ClickDocumentButton();
-            loginPage.ClickKeysButton();
-            loginPage.ClickFolderButton();
-            loginPage.ClickAllowPermissionButton();
+            loginPage.ClickFilePathKeyButton().ClickToCert("FileKeyFirst");          
             loginPage.ClickPasswordFeildButton();
             loginPage.ClickEnterButton();
         }

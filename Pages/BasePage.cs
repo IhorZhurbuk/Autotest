@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Autotest.Pages;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -17,7 +18,7 @@ namespace Autotest
         }
 
         protected IWebElement WaitForElement(By locator)
-        {
+        {            
             return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
 

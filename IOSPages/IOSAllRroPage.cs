@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Autotest.IOSPages
 {
-    public class AllRroIOSPage : BaseAllRroPage
+    public class IOSAllRroPage : BaseAllRroPage
     {
-        public AllRroIOSPage(AppiumDriver driver) : base(driver)
+        public IOSAllRroPage(AppiumDriver driver) : base(driver)
         {
         }
 

@@ -32,11 +32,11 @@ namespace Autotest.Tests
             // Ініціалізуємо сторінку в залежності від платформи
             if (platform == MobilePlatform.Android)
             {
-                loginPage = new LoginAndroidPage(driver);
+                loginPage = new AndroidLoginPage(driver);
             }
             else if (platform == MobilePlatform.IOS)
             {
-                loginPage = new LoginIOSPage(driver);
+                loginPage = new IOSLoginPage(driver);
             }
             return driver;
         }

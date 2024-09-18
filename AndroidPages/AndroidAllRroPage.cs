@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Autotest.AndroidPages
 {
-    public class AllRroAndroidPage : BaseAllRroPage
+    public class AndroidAllRroPage : BaseAllRroPage
     {
-        public AllRroAndroidPage(AppiumDriver driver) : base(driver)
+        public AndroidAllRroPage(AppiumDriver driver) : base(driver)
         {
         }
 

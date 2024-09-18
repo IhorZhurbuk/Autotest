@@ -128,17 +128,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndroidPages\AllRroAndroidPage.cs" />
+    <Compile Include="AndroidPages\AndroidAllRroPage.cs" />
+    <Compile Include="AndroidPages\AndroidStoragePage.cs" />
     <Compile Include="Drivers\LocalMobileFactory.cs" />
     <Compile Include="Drivers\MobileDriverFactory.cs" />
     <Compile Include="Drivers\MobilePlatform.cs" />
-    <Compile Include="IOSPages\AllRroIOSPage.cs" />
-    <Compile Include="IOSPages\LoginIOSPage.cs" />
+    <Compile Include="IOSPages\IOSAllRroPage.cs" />
+    <Compile Include="IOSPages\IOSLoginPage.cs" />
+    <Compile Include="IOSPages\IOSStoragePage.cs" />
     <Compile Include="Pages\BaseAllRroPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="AndroidPages\LoginAndroidPage.cs" />
+    <Compile Include="AndroidPages\AndroidLoginPage.cs" />
     <Compile Include="Pages\BaseLoginPage.cs" />
     <Compile Include="Pages\BaseRroShift.cs" />
+    <Compile Include="Pages\BaseStoragePage.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\LoginTest.cs" />
     <Compile Include="Tests\UnitTest1.cs" />
@@ -157,6 +160,7 @@
     <None Include="Config\appsettings.Android.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Config\key.json" />
     <None Include="ТП4 2023-2025\34554363_1010101016_DU231201142302.ZS2" />
     <None Include="ТП4 2023-2025\34554363_U231201142302.ZS2" />
     <None Include="ТП4 2023-2025\9_34554363_1010101016_DC20251130_c67.crt" />
