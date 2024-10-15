@@ -23,6 +23,7 @@ namespace Autotest.Drivers
 
         public override AppiumDriver GetDriver()
         {
+
             return driverInstance = CreateDriver(_platform);
         }
 
@@ -42,7 +43,7 @@ namespace Autotest.Drivers
                 case MobilePlatform.Android:
                     appiumOptions = platformCapabilities.InitNativeAndroidCapabilities();
                     driver = new AndroidDriver(uri, appiumOptions);
-                   
+                    Startup.GetLogger("Global").LogInfo("Ініціалізовано Андроїд драйвер");                  
                     break;
                 case MobilePlatform.IOS:
                     appiumOptions = platformCapabilities.InitNativeIOSCapabilities();
@@ -53,8 +54,6 @@ namespace Autotest.Drivers
                 default:
                     throw new NotSupportedException($"Платформа {platform} поки не реалізована для мобільного запуску");
             }
-
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             return driver;
         }
     }

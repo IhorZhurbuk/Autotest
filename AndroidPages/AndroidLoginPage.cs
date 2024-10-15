@@ -15,11 +15,15 @@ namespace Autotest.Pages
 
         protected override By FilePathLocator => By.XPath("//android.widget.TextView[@text=\"Особистий ключ\"]");
 
-        protected override By PasswordFeildLocator => By.XPath("//android.widget.EditText[@text=\"Введіть пароль\"]");
+        protected override By PasswordFeildLocator => By.ClassName("android.widget.EditText");
 
         protected override By EnterLocator => By.XPath("//android.widget.Button[@text=\"УВІЙТИ\"]");
 
-        protected override By LogoLocaLocator => By.XPath("//androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.View");
+        protected override By LogoLocaLocator => By.XPath("//androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView");
+
+        protected override By IncoorectPass => By.XPath("//android.widget.TextView[@text=\"Некоректний пароль приватного ключа.\"]");
+
+        protected override By OkBtn => By.XPath("//android.widget.Button[@text=\"ОК\"]");
 
         public override BaseStoragePage ClickFilePathKeyButton()
         {

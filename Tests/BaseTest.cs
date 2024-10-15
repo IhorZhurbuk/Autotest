@@ -2,34 +2,32 @@
 using Autotest.IOSPages;
 using Autotest.Pages;
 using Autotest.Utils;
-using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.iOS;
-using OpenQA.Selenium.Appium.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace Autotest.Tests
 {
-    public class BaseTest
+    public abstract class BaseTest
     {
-
         private Process appiumProcess;
 
         private AppiumDriver driver;
+        private TestResult testResult;
+        protected abstract string TestName { get; }
+        protected Logger testLogger;
+        protected Dictionary<string, Func<ExecStatus>> TestItems { get; } = new Dictionary<string, Func<ExecStatus>>();
+        protected abstract string TestIssue { get; }
         public BaseLoginPage loginPage;
 
         private AppiumDriver InitializeDriver(MobilePlatform platform)
         {
             LocalMobileDriverFactory localMobileDriver = new LocalMobileDriverFactory(platform);
             driver = localMobileDriver.GetDriver();
-
-            // Ініціалізуємо сторінку в залежності від платформи
             if (platform == MobilePlatform.Android)
             {
                 loginPage = new AndroidLoginPage(driver);
@@ -106,27 +104,70 @@ namespace Autotest.Tests
             }
         }
 
-        private void CloseDriver() => driver?.Quit();
-
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        private void CloseDriver()
         {
-            // StartAppiumServer();
+            driver?.Quit();
         }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown() => CloseAppiumServer();
-
         [SetUp]
         public void SetUp()
         {
+            testLogger = Startup.GetLogger(this.GetType().Name); 
             SetUpDriver();
+            testLogger.LogInfo("Запуск програми");
+            TestItems.Add("Запуск програми", () => RunApp());
+            testResult = new TestResult(TestName, TestIssue, TestItems.Keys);
+        }
+        protected ExecStatus ExecuteStep(string stepName, Func<ExecStatus> stepAction)
+        {
+            try
+            {
+                testLogger.LogInfo($"Виконання кроку: {stepName}");
+                return stepAction();
+            }
+            catch (Exception ex)
+            {
+                testLogger.LogError($"Помилка під час виконання кроку '{stepName}': {ex.Message}");
+                LogFileWriter.CreateLogFile(testLogger);
+                LogFileWriter.CreateLogFile(testResult);
+                Assert.Fail($"Тест завершено. Крок '{stepName}' провалився.");
+                return ExecStatus.Fail;
+            }
+        }
+        private ExecStatus RunApp()
+        {
+            try
+            {
+                testLogger.LogInfo("Запуск програми успішний.");
+                return ExecStatus.Pass;
+            }
+            catch (Exception ex)
+            {
+                testLogger.LogError($"Помилка під час запуску програми: {ex.Message}");
+                LogFileWriter.CreateLogFile(testLogger);
+                LogFileWriter.CreateLogFile(testResult);
+                Assert.Fail($"Помилка під час запуску програми: {ex.Message}");
+                return ExecStatus.Fail;
+            }
         }
 
         [TearDown]
         public void TearDown()
         {
-            CloseDriver();
+            try
+            {
+                foreach (var item in TestItems)
+                {
+                    var result = ExecuteStep(item.Key, item.Value);
+                    testResult.SetItemStatus(item.Key, result);
+                }
+                LogFileWriter.CreateLogFile(testLogger);
+                LogFileWriter.CreateLogFile(testResult);
+            }
+            finally
+            {
+                CloseDriver();
+            }
         }
     }
 }
+

@@ -25,6 +25,10 @@ namespace Autotest.IOSPages
 
         protected override By LogoLocaLocator => throw new System.NotImplementedException();
 
+        protected override By IncoorectPass => throw new System.NotImplementedException();
+
+        protected override By OkBtn => throw new System.NotImplementedException();
+
         public override BaseStoragePage ClickFilePathKeyButton()
         {
             throw new System.NotImplementedException();

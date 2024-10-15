@@ -33,7 +33,6 @@ namespace Autotest.Utils
     public enum LogType
     {
         INFO = 1,
-        CONSOLE = 2,
-        ERROR = 3,
+        ERROR = 2,
     }
 }

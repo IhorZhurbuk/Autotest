@@ -23,17 +23,9 @@ namespace Autotest.Utils
             logs.Add(log);
         }
 
-        public void LogConsoleError(string message, DateTime timestamp)
-        {
-            Log log = new Log(LogType.CONSOLE, Source, message);
-            logs.Add(log);
-        }
-
         public void LogError(string message)
         {
-#if DEBUG
             Console.WriteLine(message);
-#endif
             Log log = new Log(LogType.ERROR, Source, message.Replace("\n", "\n" + new string(' ', 24)));
             logs.Add(log);
         }

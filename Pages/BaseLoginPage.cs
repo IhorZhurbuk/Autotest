@@ -1,30 +1,23 @@
-﻿using Autotest.AndroidPages;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.iOS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Autotest.Pages
 {
-    public abstract class BaseLoginPage:BasePage
+    public abstract class BaseLoginPage : BasePage
     {
         protected BaseLoginPage(AppiumDriver driver) : base(driver)
         {
         }
-
         protected abstract By FileButtonLocator { get; }
         protected abstract By CloudKeyButtonLocator { get; }
         protected abstract By PumbButtonLocator { get; }
-        protected abstract By FilePathLocator { get; }     
+        protected abstract By FilePathLocator { get; }
 
         protected abstract By PasswordFeildLocator { get; }
         protected abstract By EnterLocator { get; }
+        protected abstract By IncoorectPass { get; }
+        protected abstract By OkBtn { get; }
         protected abstract By LogoLocaLocator { get; }
 
         public void ClickFileButton()
@@ -43,14 +36,34 @@ namespace Autotest.Pages
         public abstract BaseStoragePage ClickFilePathKeyButton();
 
 
-        public void ClickPasswordFeildButton()
+        public void ClickPasswordFeildButton(string keys)
         {
-            EnterText(PasswordFeildLocator, "777");
+            EnterText(PasswordFeildLocator, keys);
         }
-        public void ClickEnterButton()
+        public bool ClickEnterButton(bool value)
         {
-            ClickElement(EnterLocator);
-            WaitForElement(LogoLocaLocator);
+            if (!value)
+            {
+                ClickElement(EnterLocator);
+                Thread.Sleep(5000);
+                return true;
+            }
+            else
+            {
+                ClickElement(EnterLocator);
+                WaitForElement(LogoLocaLocator);
+
+            }
+            return false;
+        }
+        public bool IfModalBoxExists(string text)
+        {
+            if (driver.FindElement(IncoorectPass).Text.Equals(text))
+            {
+                ClickElement(OkBtn);
+                return true;
+            }
+            return false;
         }
     }
 }

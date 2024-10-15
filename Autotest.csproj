@@ -143,10 +143,10 @@
     <Compile Include="Pages\BaseRroShift.cs" />
     <Compile Include="Pages\BaseStoragePage.cs" />
     <Compile Include="Tests\BaseTest.cs" />
-    <Compile Include="Tests\LoginTest.cs" />
-    <Compile Include="Tests\UnitTest1.cs" />
+    <Compile Include="Tests\TCM291.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Log.cs" />
+    <Compile Include="Utils\LogFileWriter.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\PlatformCapabilities.cs" />
     <Compile Include="Utils\Startup.cs" />
@@ -161,15 +161,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Config\key.json" />
-    <None Include="ТП4 2023-2025\34554363_1010101016_DU231201142302.ZS2" />
-    <None Include="ТП4 2023-2025\34554363_U231201142302.ZS2" />
-    <None Include="ТП4 2023-2025\9_34554363_1010101016_DC20251130_c67.crt" />
-    <None Include="ТП4 2023-2025\9_34554363_1010101016_DS20251130_c65.crt" />
-    <None Include="ТП4 2023-2025\9_34554363_34554363_C20251130_c66.crt" />
-    <None Include="ТП4 2023-2025\9_34554363_34554363_S20251130_c64.crt" />
     <None Include="Config\appiumrc.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Mobile Autotest Keys\60708090_1234124444_BU240313104849.PCK" />
+    <None Include="Mobile Autotest Keys\60708090_3334441112_K240312163714.PCK" />
+    <None Include="Mobile Autotest Keys\60708090_6667778889_DU240312163509.PCK" />
+    <None Include="Mobile Autotest Keys\60708090_U240312163509.PCK" />
+    <None Include="Mobile Autotest Keys\CloudKey\ТОВ Тест мобільного додатку %28Автотестова Ольга Семенівна%29 Підписання.crt" />
+    <None Include="Mobile Autotest Keys\CloudKey\ТОВ Тест мобільного додатку %28Автотестова Ольга Семенівна%29 Шифрування.crt" />
+    <None Include="Mobile Autotest Keys\FileKeyFirst\60708090_6667778889_DU240312163509.ZS2" />
+    <None Include="Mobile Autotest Keys\FileKeyFirst\ТОВ Тест мобільного додатку %28Автотестовий Тест Тестович%29 Підписання.crt" />
+    <None Include="Mobile Autotest Keys\FileKeyFirst\ТОВ Тест мобільного додатку %28Автотестовий Тест Тестович%29 Шифрування.crt" />
+    <None Include="Mobile Autotest Keys\FileKeySecond\60708090_U240312163509.ZS2" />
+    <None Include="Mobile Autotest Keys\FileKeySecond\ТОВ Тест мобільного додатку %28ТОВ Тест мобільного додатку%29 Підписання.crt" />
+    <None Include="Mobile Autotest Keys\FileKeySecond\ТОВ Тест мобільного додатку %28ТОВ Тест мобільного додатку%29 Шифрування.crt" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

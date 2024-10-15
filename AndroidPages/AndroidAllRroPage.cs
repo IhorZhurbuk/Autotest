@@ -1,4 +1,5 @@
 ﻿using Autotest.Pages;
+using Autotest.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System;

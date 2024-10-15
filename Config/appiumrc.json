@@ -5,7 +5,7 @@
     "driver": {
       "name": "UiAutomator2"
     },
-    "log": "/AppiumLog/appiumlog",
+    "log": "C:\\Users\\Ihor.Zhurbuk\\source\\repos\\Autotest\\bin\\Debug\\LOGS\\appiumlog",
     "log-level": "info",
     "log-no-colors": false,
     "log-timestamp": true,
