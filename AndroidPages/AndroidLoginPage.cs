@@ -1,12 +1,13 @@
-﻿using Autotest.AndroidPages;
+﻿using Autotest.Pages;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 
-namespace Autotest.Pages
+namespace Autotest.AndroidPages
 {
     public class AndroidLoginPage : BaseLoginPage
     {
-        public AndroidLoginPage(AppiumDriver driver) : base(driver)
+        public AndroidLoginPage(AppiumDriver driver, IConfiguration configuration) : base(driver, configuration)
         {
         }
         protected override By FileButtonLocator => By.XPath("//android.widget.TextView[@text=\"Файловий ключ\"]");

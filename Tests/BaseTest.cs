@@ -2,13 +2,13 @@
 using Autotest.IOSPages;
 using Autotest.Pages;
 using Autotest.Utils;
+using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace Autotest.Tests
 {
@@ -22,20 +22,16 @@ namespace Autotest.Tests
         protected Logger testLogger;
         protected Dictionary<string, Func<ExecStatus>> TestItems { get; } = new Dictionary<string, Func<ExecStatus>>();
         protected abstract string TestIssue { get; }
-        public BaseLoginPage loginPage;
+        protected  PageFactory pageFactory;
 
         private AppiumDriver InitializeDriver(MobilePlatform platform)
         {
             LocalMobileDriverFactory localMobileDriver = new LocalMobileDriverFactory(platform);
             driver = localMobileDriver.GetDriver();
-            if (platform == MobilePlatform.Android)
-            {
-                loginPage = new AndroidLoginPage(driver);
-            }
-            else if (platform == MobilePlatform.IOS)
-            {
-                loginPage = new IOSLoginPage(driver);
-            }
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddJsonFile("Config\\key.json") 
+                .Build();
+            pageFactory = new PageFactory(driver, configuration, platform);
             return driver;
         }
 
@@ -111,7 +107,7 @@ namespace Autotest.Tests
         [SetUp]
         public void SetUp()
         {
-            testLogger = Startup.GetLogger(this.GetType().Name); 
+            testLogger = Startup.GetLogger(this.GetType().Name);
             SetUpDriver();
             testLogger.LogInfo("Запуск програми");
             TestItems.Add("Запуск програми", () => RunApp());

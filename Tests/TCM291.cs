@@ -1,4 +1,5 @@
-﻿using Autotest.Utils;
+﻿using Autotest.Pages;
+using Autotest.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -22,6 +23,7 @@ namespace Autotest.Tests
         private ExecStatus Functional()
         {
             ExecStatus result = ExecStatus.InProccess;
+            var loginPage = pageFactory.CreatePage<BaseLoginPage>();
             loginPage.ClickPumbButton();
             loginPage.ClickCloudKeyButton();
             loginPage.ClickFileButton();
@@ -31,6 +33,7 @@ namespace Autotest.Tests
         private ExecStatus InvalidPassword()
         {
             ExecStatus result = ExecStatus.InProccess;
+            var loginPage = pageFactory.CreatePage<BaseLoginPage>();
             loginPage.ClickPasswordFeildButton("123");
             loginPage.ClickEnterButton(false);
             if (!loginPage.IfModalBoxExists("Некоректний пароль приватного ключа."))
@@ -43,9 +46,9 @@ namespace Autotest.Tests
         private ExecStatus CorrectPass()
         {
             ExecStatus result = ExecStatus.InProccess;
+            var loginPage = pageFactory.CreatePage<BaseLoginPage>();
             loginPage.ClickPasswordFeildButton("777");
-            loginPage.ClickEnterButton(true);
-            
+            loginPage.ClickEnterButton(true);          
             return ExecStatus.Pass;
         }
     }

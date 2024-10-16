@@ -1,17 +1,19 @@
-﻿[
-  {
-    "Name": "FileKeyFirst",
-    "Password": "777",
-    "Rro": "4000029021"
-  },
-  {
-    "Name": "SecondKey",
-    "Password": "777",
-    "Rro": "4000029022"
-  },
-  {
-    "Name": "CloudKey",
-    "Password": "Rer2024*",
-    "Rro": "4000029023"
-  }
-]
+﻿{
+  "Certificates": [
+    {
+      "Name": "FileKeyFirst",
+      "Password": "777",
+      "Rro": "4000029021"
+    },
+    {
+      "Name": "FileKeySecond",
+      "Password": "777",
+      "Rro": "4000029022"
+    },
+    {
+      "Name": "CloudKey",
+      "Password": "Rer2024*",
+      "Rro": "4000029023"
+    }
+  ]
+}

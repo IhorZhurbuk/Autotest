@@ -1,14 +1,21 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.Extensions.Configuration;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 
 namespace Autotest.Pages
 {
     public abstract class BaseLoginPage : BasePage
     {
-        protected BaseLoginPage(AppiumDriver driver) : base(driver)
+        private readonly IConfiguration _configuration;
+        protected BaseLoginPage(AppiumDriver driver, IConfiguration configuration) : base(driver)
         {
+            _configuration = configuration;
         }
+
         protected abstract By FileButtonLocator { get; }
         protected abstract By CloudKeyButtonLocator { get; }
         protected abstract By PumbButtonLocator { get; }
@@ -65,5 +72,27 @@ namespace Autotest.Pages
             }
             return false;
         }
+        public void Authorize(string rro)
+        {
+            var cert = _configuration.GetSection("Certificates")
+                .Get<List<Certificate>>()
+                .FirstOrDefault(c => c.Rro == rro);
+
+            if (cert == null)
+            {
+                throw new Exception($"Сертифікат для RRO {rro} не знайдено у конфігурації.");
+            }
+
+            ClickFileButton(); 
+            ClickFilePathKeyButton().ClickToCert(cert.Name); 
+            ClickPasswordFeildButton(cert.Password); 
+            ClickEnterButton(true); 
+        }
     }
+}
+public class Certificate
+{
+    public string Name { get; set; }
+    public string Password { get; set; }
+    public string Rro { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using Autotest.Pages;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.iOS;
@@ -7,7 +8,7 @@ namespace Autotest.IOSPages
 {
     public class IOSLoginPage : BaseLoginPage
     {
-        public IOSLoginPage(AppiumDriver driver) : base(driver)
+        public IOSLoginPage(AppiumDriver driver, IConfiguration configuration) : base(driver, configuration)
         {
         }
 
