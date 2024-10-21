@@ -132,16 +132,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidPages\AndroidAllRroPage.cs" />
+    <Compile Include="AndroidPages\AndroidDictionaryPage.cs" />
     <Compile Include="AndroidPages\AndroidMainPage.cs" />
     <Compile Include="AndroidPages\AndroidStoragePage.cs" />
     <Compile Include="Drivers\LocalMobileFactory.cs" />
     <Compile Include="Drivers\MobileDriverFactory.cs" />
     <Compile Include="Drivers\MobilePlatform.cs" />
     <Compile Include="IOSPages\IOSAllRroPage.cs" />
+    <Compile Include="IOSPages\IOSDictionaryPage.cs" />
     <Compile Include="IOSPages\IOSLoginPage.cs" />
     <Compile Include="IOSPages\IOSMainPage.cs" />
     <Compile Include="IOSPages\IOSStoragePage.cs" />
     <Compile Include="Pages\BaseAllRroPage.cs" />
+    <Compile Include="Pages\BaseDictionaryPage.cs" />
     <Compile Include="Pages\BaseMainPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="AndroidPages\AndroidLoginPage.cs" />
@@ -153,6 +156,7 @@
     <Compile Include="Tests\TCM291.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\TCM292.cs" />
+    <Compile Include="Utils\Helpers.cs" />
     <Compile Include="Utils\Log.cs" />
     <Compile Include="Utils\LogFileWriter.cs" />
     <Compile Include="Utils\Logger.cs" />

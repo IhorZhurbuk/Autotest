@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium.Appium;
 using System;
+using System.Reflection;
 
 namespace Autotest.Pages
 {
@@ -31,7 +32,23 @@ namespace Autotest.Pages
                 throw new Exception($"Не вдалося знайти тип для сторінки: {fullName}");
             }
 
-            return (T)Activator.CreateInstance(type, driver, configuration);
+            ConstructorInfo constructorWithConfig = type.GetConstructor(new Type[] { typeof(AppiumDriver), typeof(IConfiguration) });
+            ConstructorInfo constructorWithoutConfig = type.GetConstructor(new Type[] { typeof(AppiumDriver) });
+
+            if (constructorWithConfig != null)
+            {
+                // Якщо є конструктор з драйвером і конфігурацією, створюємо сторінку з обома параметрами
+                return (T)Activator.CreateInstance(type, driver, configuration);
+            }
+            else if (constructorWithoutConfig != null)
+            {
+                // Якщо є тільки конструктор з драйвером, створюємо сторінку лише з драйвером
+                return (T)Activator.CreateInstance(type, driver);
+            }
+            else
+            {
+                throw new Exception($"Не вдалося знайти відповідний конструктор для сторінки: {fullName}");
+            }
         }
     }
 }

@@ -22,5 +22,10 @@ namespace Autotest.IOSPages
         protected override By DictionaryButton => throw new NotImplementedException();
 
         protected override By MenuButton => throw new NotImplementedException();
+
+        protected override BaseDictionaryPage BaseDictionaryPage(AppiumDriver driver)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

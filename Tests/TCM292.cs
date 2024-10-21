@@ -22,7 +22,7 @@ namespace Autotest.Tests
             TestItems.Add("Чек продажу оплата готівкою", CheckCash);
             TestItems.Add("Чек продажу оплата карткою", CheckCard);
             TestItems.Add("Чек продажу оплата комбінована", CheckCombine);
-            TestItems.Add("Чек продажу оплата карткою", CheckNoRest);
+            TestItems.Add("Чек продажу оплата без решти", CheckNoRest);
             TestItems.Add("Чек передплати оплата готівкою", CheckBefore);
             TestItems.Add("Чек післяплати оплата готівкою", CheckAfter);
             TestItems.Add("Чек оплата частинами", CheckParts);
@@ -34,7 +34,15 @@ namespace Autotest.Tests
         {
             ExecStatus result = ExecStatus.InProccess;
             var loginPage = pageFactory.CreatePage<BaseLoginPage>();
-            loginPage.Authorize("4000029022");
+            loginPage.Authorize("FileKeySecond");
+            var mainPage = pageFactory.CreatePage<BaseMainPage>();
+            if(!mainPage.ClickDictionaryButton().ClickSynchronization())
+            {
+                testLogger.LogError("Не з'явилось модальне вікно");
+                return ExecStatus.Fail;
+            }
+
+            
             return ExecStatus.Pass;
         }
         private ExecStatus CheckCash()

@@ -12,5 +12,19 @@ namespace Autotest.Pages
         protected abstract By HistoryButton { get; }
         protected abstract By DictionaryButton { get; }
         protected abstract By MenuButton { get; }
+        public void ClickAllRooButton()
+        {
+            ClickElement(AllRooButton);
+        }
+        public void ClickHistoryButton()
+        {
+            ClickElement(HistoryButton);
+        }
+        protected abstract BaseDictionaryPage ClickDictionaryButton();
+
+        public void ClickMenuButton()
+        {
+            ClickElement(MenuButton);
+        }
     }
 }

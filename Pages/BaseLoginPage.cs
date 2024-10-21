@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Autotest.Utils;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Linq;
+using System.Threading;
 
 namespace Autotest.Pages
 {
@@ -49,44 +50,53 @@ namespace Autotest.Pages
         }
         public bool ClickEnterButton(bool value)
         {
+            ClickElement(EnterLocator);
             if (!value)
             {
-                ClickElement(EnterLocator);
-                Thread.Sleep(5000);
-                return true;
+                bool modalExists = Helpers.CheckAndCloseModal(driver, IncoorectPass, "Некоректний пароль приватного ключа.", OkBtn);
+                return modalExists;
             }
             else
             {
-                ClickElement(EnterLocator);
                 WaitForElement(LogoLocaLocator);
+            }
 
-            }
             return false;
         }
-        public bool IfModalBoxExists(string text)
+        public void Authorize(string certName)
         {
-            if (driver.FindElement(IncoorectPass).Text.Equals(text))
-            {
-                ClickElement(OkBtn);
-                return true;
-            }
-            return false;
-        }
-        public void Authorize(string rro)
-        {
+            // Знаходимо сертифікат за іменем ключа
             var cert = _configuration.GetSection("Certificates")
                 .Get<List<Certificate>>()
-                .FirstOrDefault(c => c.Rro == rro);
+                .FirstOrDefault(c => c.Name == certName);
 
             if (cert == null)
             {
-                throw new Exception($"Сертифікат для RRO {rro} не знайдено у конфігурації.");
+                throw new Exception($"Сертифікат з ім'ям {certName} не знайдено у конфігурації.");
             }
 
-            ClickFileButton(); 
-            ClickFilePathKeyButton().ClickToCert(cert.Name); 
-            ClickPasswordFeildButton(cert.Password); 
-            ClickEnterButton(true); 
+            ClickFileButton();
+            ClickFilePathKeyButton().ClickToCert(cert.Name);
+            ClickPasswordFeildButton(cert.Password);
+            ClickEnterButton(true);
+            var rroElements = driver.FindElements(By.XPath($"//android.widget.TextView[contains(@text, 'ФН')]"));
+            var openShiftButtons = driver.FindElements(By.XPath("//android.widget.Button[@text='Відкрити зміну']"));
+
+            if (rroElements.Count == 0 || openShiftButtons.Count == 0)
+            {
+                throw new Exception($"Не вдалося знайти елементи з ФН або кнопки 'Відкрити зміну'.");
+            }
+            for (int i = 0; i < rroElements.Count; i++)
+            {
+                var rroText = rroElements[i].Text;
+
+                if (rroText.Contains(cert.Rro))
+                {
+                    openShiftButtons[i].Click();
+                    return;
+                }
+            }
+            throw new Exception($"Не вдалося знайти відповідну кнопку 'Відкрити зміну' для сертифіката з ФН {cert.Rro}.");
         }
     }
 }

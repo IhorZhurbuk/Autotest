@@ -35,8 +35,7 @@ namespace Autotest.Tests
             ExecStatus result = ExecStatus.InProccess;
             var loginPage = pageFactory.CreatePage<BaseLoginPage>();
             loginPage.ClickPasswordFeildButton("123");
-            loginPage.ClickEnterButton(false);
-            if (!loginPage.IfModalBoxExists("Некоректний пароль приватного ключа."))
+            if (!loginPage.ClickEnterButton(false))
             {
                 testLogger.LogError("Не з'явилось модальне вікно");
                 return ExecStatus.Fail;

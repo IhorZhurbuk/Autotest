@@ -15,12 +15,18 @@ namespace Autotest.AndroidPages
         {
         }
 
-        protected override By AllRooButton => By.XPath("//android.widget.TextView[@text=\"Всі каси\"]");
+        protected override By AllRooButton => By.XPath("//androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[4]/android.view.View");
 
-        protected override By HistoryButton => By.XPath("//android.widget.TextView[@text=\"Історія\"]");
+        protected override By HistoryButton => By.XPath("//androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.View");
 
-        protected override By DictionaryButton => By.XPath("//android.widget.TextView[@text=\"Довідники\"]");
+        protected override By DictionaryButton => By.XPath("//androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View");
 
-        protected override By MenuButton => By.XPath("//android.widget.TextView[@text=\"Меню\"]");
+        protected override By MenuButton => By.XPath("//androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.View");
+
+        protected override BaseDictionaryPage ClickDictionaryButton()
+        {
+            ClickElement(DictionaryButton);
+            return new AndroidDictionaryPage(driver);
+        }
     }
 }
