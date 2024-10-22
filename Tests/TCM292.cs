@@ -1,11 +1,7 @@
-﻿using Autotest.Pages;
+﻿using Autotest.Enums;
+using Autotest.Pages;
 using Autotest.Utils;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Autotest.Tests
 {
@@ -36,18 +32,22 @@ namespace Autotest.Tests
             var loginPage = pageFactory.CreatePage<BaseLoginPage>();
             loginPage.Authorize("FileKeySecond");
             var mainPage = pageFactory.CreatePage<BaseMainPage>();
-            if(!mainPage.ClickDictionaryButton().ClickSynchronization())
+            if (!mainPage.ClickDictionaryButton().ClickSynchronization())
             {
                 testLogger.LogError("Не з'явилось модальне вікно");
                 return ExecStatus.Fail;
             }
-
-            
+            mainPage.ClickGoToRro();
             return ExecStatus.Pass;
         }
         private ExecStatus CheckCash()
         {
             ExecStatus result = ExecStatus.InProccess;
+            var rroPage = pageFactory.CreatePage<BaseShiftPage>();
+            rroPage.MethodofPayment().СhooseMethodofPayment(PaymentMethod.PostpaidFull);
+            var payment = pageFactory.CreatePage<BasePaymentPage>();
+            payment.AddGoods(Goods.AutoTestItem1);
+            payment.CompletePayment(PaymentTypes.Cash);
             return ExecStatus.Pass;
         }
         private ExecStatus CheckCard()

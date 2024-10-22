@@ -93,6 +93,7 @@ namespace Autotest.Pages
                 if (rroText.Contains(cert.Rro))
                 {
                     openShiftButtons[i].Click();
+                    WaitForElement(By.XPath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.View"));
                     return;
                 }
             }

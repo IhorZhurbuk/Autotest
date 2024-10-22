@@ -21,6 +21,7 @@ namespace Autotest.Pages
         public bool ClickSynchronization()
         {
             ClickElement(SynchronizationButton);
+            WaitForElement(ModalText);
             bool modalExists = Helpers.CheckAndCloseModal(driver, ModalText, "Синхронізація успішна", OkBtn);
             return modalExists;
         }

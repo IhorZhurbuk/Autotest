@@ -17,6 +17,6 @@ namespace Autotest.AndroidPages
         protected override By SynchronizationButton => By.XPath("//androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.View");
 
         protected override By ModalText => By.XPath("//android.widget.TextView[@text=\"Синхронізація успішна\"]");
-        protected override By OkBtn => By.XPath("//android.widget.Button[@text=\"ОК\"]");
+        protected override By OkBtn => By.XPath("//android.widget.Button[@text=\"Ок\"]");
     }
 }
