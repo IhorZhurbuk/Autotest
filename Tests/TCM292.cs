@@ -51,7 +51,7 @@ namespace Autotest.Tests
             var cashpayment = pageFactory.CreatePage<BaseCashPaymentPage>();
             cashpayment.CompleteCashPayment();
             payment.RegCheck();
-            return ExecStatus.Pass;
+            return ExecStatus.Pass; 
         }
         private ExecStatus CheckCard()
         {
