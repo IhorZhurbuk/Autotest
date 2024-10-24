@@ -19,7 +19,7 @@ namespace Autotest.AndroidPages
         public override BasePaymentPage MethodofPayment()
         {
             ClickElement(ChoosePayment);
-            return new AndroidPaymentPages(driver);
+            return new AndroidPaymentPage(driver);
         }
     }
 }

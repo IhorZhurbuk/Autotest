@@ -15,7 +15,7 @@ namespace Autotest
         public BasePage(AppiumDriver driver)
         {         
             this.driver = driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(25));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
         protected IWebElement WaitForElement(By locator)

@@ -11,6 +11,7 @@ namespace Autotest.Pages
 {
     public abstract class BasePaymentPage : BasePage
     {
+        protected PageFactory pageFactory;
         protected BasePaymentPage(AppiumDriver driver) : base(driver)
         {
         }
@@ -105,27 +106,22 @@ namespace Autotest.Pages
 
             ClickElement(paymentLocator);
         }
-        public void CompletePayment(PaymentTypes paymentType, string receivedCash = null, string cardAmount = null)
+        public void CompletePayment(PaymentTypes paymentType)
         {
-
             CreatePayment(paymentType);
             switch (paymentType)
             {
                 case PaymentTypes.Cash:
-                    if (!string.IsNullOrEmpty(receivedCash))
-                    {
-                        FillCashPaymentFields(receivedCash);
-                    }
+
+                    var cashPaymentPage = pageFactory.CreatePage<BaseCashPaymentPage>();
+                    cashPaymentPage.CompleteCashPayment();
                     break;
 
                 case PaymentTypes.Card:
                     break;
 
                 case PaymentTypes.Combine:
-                    if (!string.IsNullOrEmpty(receivedCash) || !string.IsNullOrEmpty(cardAmount))
-                    {
-                        FillCombinedPaymentFields(receivedCash, cardAmount);
-                    }
+
                     break;
 
                 case PaymentTypes.NoRest:
@@ -135,25 +131,10 @@ namespace Autotest.Pages
                     throw new ArgumentOutOfRangeException(nameof(paymentType), paymentType, null);
             }
         }
-        public void FillCashPaymentFields(string receivedCash)
+        public void RegCheck()
         {
-            By receivedCashField = By.XPath("//android.widget.EditText[@text='0,00']");
-            EnterText(receivedCashField, receivedCash);
-            By restField = By.XPath("//android.widget.TextView[@text='₴ 0,00']");
-            WaitForElement(restField);
+            ClickElement(RegistrToDps);
         }
-        public void FillCombinedPaymentFields(string cashAmount, string cardAmount)
-        {
-            if (!string.IsNullOrEmpty(cashAmount))
-            {
-                By combinedCashField = By.XPath("//android.widget.EditText[@text='Готівка']");
-                EnterText(combinedCashField, cashAmount);
-            }
-            if (!string.IsNullOrEmpty(cardAmount))
-            {
-                By combinedCardField = By.XPath("//android.widget.EditText[@text='Картка']");
-                EnterText(combinedCardField, cardAmount);
-            }
-        }
+
     }
 }

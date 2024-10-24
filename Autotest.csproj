@@ -132,9 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidPages\AndroidAllRroPage.cs" />
+    <Compile Include="AndroidPages\AndroidCashPaymentPage.cs" />
     <Compile Include="AndroidPages\AndroidDictionaryPage.cs" />
     <Compile Include="AndroidPages\AndroidMainPage.cs" />
-    <Compile Include="AndroidPages\AndroidPaymentPages.cs" />
+    <Compile Include="AndroidPages\AndroidPaymentPage.cs" />
     <Compile Include="AndroidPages\AndroidShiftPage.cs" />
     <Compile Include="AndroidPages\AndroidStoragePage.cs" />
     <Compile Include="Drivers\LocalMobileFactory.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Enums\PaymentMethod.cs" />
     <Compile Include="Enums\PaymentTypes.cs" />
     <Compile Include="IOSPages\IOSAllRroPage.cs" />
+    <Compile Include="IOSPages\IOSCashPaymentPage.cs" />
     <Compile Include="IOSPages\IOSDictionaryPage.cs" />
     <Compile Include="IOSPages\IOShiftPage.cs" />
     <Compile Include="IOSPages\IOSLoginPage.cs" />
@@ -151,6 +153,7 @@
     <Compile Include="IOSPages\IOSPaymentPage.cs" />
     <Compile Include="IOSPages\IOSStoragePage.cs" />
     <Compile Include="Pages\BaseAllRroPage.cs" />
+    <Compile Include="Pages\BaseCashPaymentPage.cs" />
     <Compile Include="Pages\BaseDictionaryPage.cs" />
     <Compile Include="Pages\BaseMainPage.cs" />
     <Compile Include="Pages\BasePage.cs" />

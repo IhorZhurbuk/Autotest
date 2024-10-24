@@ -44,10 +44,13 @@ namespace Autotest.Tests
         {
             ExecStatus result = ExecStatus.InProccess;
             var rroPage = pageFactory.CreatePage<BaseShiftPage>();
-            rroPage.MethodofPayment().СhooseMethodofPayment(PaymentMethod.PostpaidFull);
+            rroPage.MethodofPayment().СhooseMethodofPayment(PaymentMethod.Sale);
             var payment = pageFactory.CreatePage<BasePaymentPage>();
             payment.AddGoods(Goods.AutoTestItem1);
-            payment.CompletePayment(PaymentTypes.Cash);
+            payment.CreatePayment(PaymentTypes.Cash);
+            var cashpayment = pageFactory.CreatePage<BaseCashPaymentPage>();
+            cashpayment.CompleteCashPayment();
+            payment.RegCheck();
             return ExecStatus.Pass;
         }
         private ExecStatus CheckCard()

@@ -37,12 +37,10 @@ namespace Autotest.Pages
 
             if (constructorWithConfig != null)
             {
-                // Якщо є конструктор з драйвером і конфігурацією, створюємо сторінку з обома параметрами
                 return (T)Activator.CreateInstance(type, driver, configuration);
             }
             else if (constructorWithoutConfig != null)
             {
-                // Якщо є тільки конструктор з драйвером, створюємо сторінку лише з драйвером
                 return (T)Activator.CreateInstance(type, driver);
             }
             else

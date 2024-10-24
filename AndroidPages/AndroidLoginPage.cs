@@ -20,7 +20,7 @@ namespace Autotest.AndroidPages
 
         protected override By EnterLocator => By.XPath("//android.widget.Button[@text=\"УВІЙТИ\"]");
 
-        protected override By LogoLocaLocator => By.XPath("//androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView");
+        protected override By LogoLocaLocator => By.XPath("//androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup");
 
         protected override By IncoorectPass => By.XPath("//android.widget.TextView[@text=\"Некоректний пароль приватного ключа.\"]");
 
